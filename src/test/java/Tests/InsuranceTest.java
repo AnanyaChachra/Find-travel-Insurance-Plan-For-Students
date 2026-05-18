@@ -9,12 +9,14 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import ObjectImplementation.ObjectReader;
+import Pages.TravelInsurancePage;
 import base.BaseClass;
 
 public class InsuranceTest {
 	WebDriver driver;
 	BaseClass bc;
 	ObjectReader or;
+	TravelInsurancePage ti;
 
 	@BeforeTest
 	public void Setup() throws IOException {
@@ -30,13 +32,20 @@ public class InsuranceTest {
 		
 		driver.get(or.getBaseUrl());
 		sc.close();
+		
+		
 	}
 	
 	@Test
 	public void getUrl() {
 		System.out.println("Openend");
 	}
-	
+	@Test
+	public void navigateToTravelInsurance() throws InterruptedException {
+		ti=new TravelInsurancePage(driver);
+		ti.clickOnTravelInsurance().click();
+		Thread.sleep(3000);
+	}
 	
 	@AfterTest
 	public void tearDown() {

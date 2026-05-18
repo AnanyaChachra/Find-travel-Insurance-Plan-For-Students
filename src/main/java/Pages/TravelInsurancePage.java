@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class TravelInsurancePage {
 
 	WebDriver driver;
-	By clickTravelInsurance = By.xpath("/html/body/main/div[2]/section/div[7]/a/div[1]/div/i");
+	By clickTravelInsurance = By.xpath("//i[@class=\"icon-bg homeIconsBg icon-bg-new ti\"]");
 	public TravelInsurancePage(WebDriver driver) {
 		this.driver=driver;
 	}
