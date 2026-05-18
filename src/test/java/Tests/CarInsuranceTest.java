@@ -1,5 +1,44 @@
 package Tests;
 
-public class CarInsuranceTest {
+import java.io.IOException;
+import java.util.Scanner;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import ObjectImplementation.ObjectReader;
+
+import base.BaseClass;
+
+public class CarInsuranceTest {
+	WebDriver driver;
+	BaseClass bc;
+	ObjectReader or;
+	
+
+	@BeforeTest
+	public void Setup() throws IOException {
+		System.out.println("Enter the browser you need to use from the following options: \n1. chrome \n2. edge \n3. firefox");
+		Scanner sc =new Scanner(System.in);
+		int browserNumber=sc.nextInt();
+		
+		bc= new BaseClass();
+		or= new ObjectReader();
+		
+		
+		driver=bc.getBrowser(browserNumber);
+		
+		driver.get(or.getBaseUrl());
+		sc.close();
+		
+		
+	}
+	
+	@AfterTest
+	public void tearDown() {
+		driver.quit();
+		
+	}
 }
