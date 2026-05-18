@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import ObjectImplementation.ObjectReader;
 import base.BaseClass;
 
-public class InsuranceTest {
+public class TravelInsuranceTest {
 	WebDriver driver;
 	BaseClass bc;
 	ObjectReader or;
