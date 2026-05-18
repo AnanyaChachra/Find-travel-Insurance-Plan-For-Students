@@ -13,7 +13,8 @@ public class ObjectReader {
 	
 	public ObjectReader() throws IOException {
 		pro=new Properties();
-		String path ="C:\\Users\\2487553\\eclipse-workspace\\com.majorProject.InsuranceAutomation\\object repository\\object.properties";
+		String path ="C:\\Users\\2487453\\eclipse-workspace\\Find-travel-Insurance-Plan-For-Students\\object repository\\object.properties";
+		//"C:\Users\2487453\eclipse-workspace\Find-travel-Insurance-Plan-For-Students\object repository\object.properties"
 		file= new FileInputStream(path);
 		pro.load(file);
 	}
