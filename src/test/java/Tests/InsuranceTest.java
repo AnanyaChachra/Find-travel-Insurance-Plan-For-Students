@@ -37,6 +37,7 @@ public class InsuranceTest {
 		System.out.println("Openend");
 	}
 	
+	
 	@AfterTest
 	public void tearDown() {
 		driver.quit();
