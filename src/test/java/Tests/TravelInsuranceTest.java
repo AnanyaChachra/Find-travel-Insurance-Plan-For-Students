@@ -68,11 +68,6 @@ public class TravelInsuranceTest {
 		Thread.sleep(3000);
 		ti.done().click();
 		Thread.sleep(3000);
-
-		
-
-
-
 	}
 	@Test(dependsOnMethods= {"chooseStartDate"})
 	public void addTravellers() throws InterruptedException {
