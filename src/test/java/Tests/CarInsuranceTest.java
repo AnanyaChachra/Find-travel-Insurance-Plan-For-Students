@@ -46,13 +46,7 @@ public class CarInsuranceTest {
 		
 		
 	}
-//	@Test
-//	public void runninExample() throws InterruptedException {
-//		car.navigateToCarInsurance();
-//		Thread.sleep(3000);
-//		System.out.println("executed");
-//		
-//	}
+//	
 	
 	@Test
 	//Navigation to Car Insurance
@@ -64,7 +58,7 @@ public class CarInsuranceTest {
 		//WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(10));
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='brand-ambassador-policybazaar']")));
 	    
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		String actualURL=driver.getCurrentUrl();
 		System.out.println(expectedURL +"\n" + actualURL);
 		
