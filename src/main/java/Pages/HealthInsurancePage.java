@@ -1,5 +1,6 @@
 package Pages;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,4 +53,14 @@ public class HealthInsurancePage {
 	        System.out.println("Total plans: " + list.size());
 	    }
 	
+=======
+import org.openqa.selenium.WebDriver;
+
+public class HealthInsurancePage {
+	WebDriver driver;
+
+	public HealthInsurancePage(WebDriver driver) {
+		this.driver=driver;
+	}
+>>>>>>> 3e58a32 (Changes)
 }

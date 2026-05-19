@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 public class TravelInsurancePage {
 
 	WebDriver driver;
+<<<<<<< HEAD
 	By clickTravelInsurance = By.xpath("//i[@class=\"icon-bg homeIconsBg icon-bg-new ti\"]");
 	By clickOnUSA = By.xpath("//img[@alt='USA_Image']");
 	By clickOnDate = By.xpath("//div[@class=\"newPq_duration_wrap__dateCol\"][1]//span");
@@ -24,9 +25,16 @@ public class TravelInsurancePage {
 	By clickDone2 = By.xpath("//*[@id=\"modal-root\"]/section/article/div/div/div/div[3]/div/button");
 	By clickOnExplore = By.xpath("//button[@class='travel_main_cta']");
 	By clickOnSortBy = By.xpath("//a[text()='Sort by']");
+=======
+	
+	
+	By clickTravelInsurance = By.xpath("//i[@class=\\\"icon-bg homeIconsBg icon-bg-new ti\\\"]");
+	
+>>>>>>> 3e58a32 (Changes)
 	public TravelInsurancePage(WebDriver driver) {
 		this.driver=driver;
 	}
+	
 	public WebElement clickOnTravelInsurance() {
 		WebElement TravelInsurance= driver.findElement(clickTravelInsurance);
 		return TravelInsurance;
