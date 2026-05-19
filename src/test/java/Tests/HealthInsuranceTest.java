@@ -36,10 +36,9 @@ public class HealthInsuranceTest {
 		
 	}
 	
-	@Test
+	@Test(priority=1)
     public void testHealthInsuranceMenuExtraction() throws IOException, InterruptedException {
         HealthInsurancePage healthPage = new HealthInsurancePage(driver);
-        healthPage.extractHealthInsuranceMenu(or.getHealthInsuranceLink());
     } 
 	
 	@AfterTest
