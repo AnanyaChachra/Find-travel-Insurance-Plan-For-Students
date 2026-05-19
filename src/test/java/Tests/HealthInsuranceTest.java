@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import ObjectImplementation.ObjectReader;
-
+import Pages.HealthInsurancePage;
 import base.BaseClass;
 
 public class HealthInsuranceTest {
@@ -35,6 +35,12 @@ public class HealthInsuranceTest {
 		
 		
 	}
+	
+	@Test
+    public void testHealthInsuranceMenuExtraction() throws IOException, InterruptedException {
+        HealthInsurancePage healthPage = new HealthInsurancePage(driver);
+        healthPage.extractHealthInsuranceMenu(or.getHealthInsuranceLink());
+    } 
 	
 	@AfterTest
 	public void tearDown() {
