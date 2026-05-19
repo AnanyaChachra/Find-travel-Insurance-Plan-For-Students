@@ -1,6 +1,5 @@
 package Pages;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,30 +11,45 @@ import org.openqa.selenium.WebElement;
 public class HealthInsurancePage {
 
 	 WebDriver driver;
-	    public HealthInsurancePage(WebDriver driver) {
+	 public HealthInsurancePage(WebDriver driver) {
 	        this.driver = driver;
 	    }
 
-	    public void extractHealthInsuranceMenu(String healthUrl) throws IOException, InterruptedException {
-
+	    // Navigation to health insurance page
+	    public boolean navigateToHealthInsurance(String healthUrl) throws InterruptedException {
 	        driver.get(healthUrl);
 	        Thread.sleep(4000);
+	        String currentUrl = driver.getCurrentUrl();
+	        return currentUrl.contains("health-insurance");
+	    }
 
+	    //Checking visibility of menu items
+	    public boolean MenuItemsVisible() {
+	        List<WebElement> menuItems = driver.findElements(By.xpath("//div[contains(@class,'leftCol')]/descendant::p"));
+	        return menuItems.size() > 0;
+	    }
+
+	    //Extracting and storing menu items in list
+	    public List<String> extractHealthInsuranceMenu() {
 	        List<WebElement> menuItems = driver.findElements(By.xpath("//div[contains(@class,'leftCol')]/descendant::p"));
 	        List<String> list = new ArrayList<>();
-
-	        System.out.println("Health Insurance Plans Are:");
 
 	        for (WebElement item : menuItems) {
 	            String text = item.getText().trim();
 	            if (!text.isEmpty()) {
 	                list.add(text);
-	                System.out.println("-" + text);
 	            }
 	        }
+	        return list;
+	    }
 
-	        System.out.println("Total plans : " + list.size());
-
+	    //Displaying extracted items
+	    public void displayMenuItems(List<String> list) {
+	        System.out.println("Health Insurance Plans Are:");
+	        for (String item : list) {
+	            System.out.println("- " + item);
+	        }
+	        System.out.println("Total plans: " + list.size());
 	    }
 	
 }
