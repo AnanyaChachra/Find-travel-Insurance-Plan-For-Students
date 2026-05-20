@@ -11,7 +11,7 @@ public class TravelInsurancePage {
 	By clickTravelInsurance = By.xpath("//i[@class=\"icon-bg homeIconsBg icon-bg-new ti\"]");
 	By clickOnUSA = By.xpath("//img[@alt='USA_Image']");
 	By clickOnDate = By.xpath("//div[@class=\"newPq_duration_wrap__dateCol\"][1]//span");
-	By clickOnStartDate = By.xpath("//span[text()='19']");
+	By clickOnStartDate = By.xpath("//span[text()='20']");
 	By clickOnEndDate = By.xpath("//span[text()='31']");
 	By clickOnAddTraveller = By.xpath("//a[text()='Add']");
 	By clickOnTwo = By.xpath("//div[@class='memSelectRadioWrapper__radio'][2]");
