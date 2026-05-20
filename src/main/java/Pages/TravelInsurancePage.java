@@ -7,11 +7,10 @@ import org.openqa.selenium.WebElement;
 public class TravelInsurancePage {
 
 	WebDriver driver;
-<<<<<<< HEAD
 	By clickTravelInsurance = By.xpath("//i[@class=\"icon-bg homeIconsBg icon-bg-new ti\"]");
 	By clickOnUSA = By.xpath("//img[@alt='USA_Image']");
 	By clickOnDate = By.xpath("//div[@class=\"newPq_duration_wrap__dateCol\"][1]//span");
-	By clickOnStartDate = By.xpath("//span[text()='19']");
+	By clickOnStartDate = By.xpath("//span[text()='20']");
 	By clickOnEndDate = By.xpath("//span[text()='31']");
 	By clickOnAddTraveller = By.xpath("//a[text()='Add']");
 	By clickOnTwo = By.xpath("//div[@class='memSelectRadioWrapper__radio'][2]");
@@ -25,12 +24,11 @@ public class TravelInsurancePage {
 	By clickDone2 = By.xpath("//*[@id=\"modal-root\"]/section/article/div/div/div/div[3]/div/button");
 	By clickOnExplore = By.xpath("//button[@class='travel_main_cta']");
 	By clickOnSortBy = By.xpath("//a[text()='Sort by']");
-=======
+
 	
 	
-	By clickTravelInsurance = By.xpath("//i[@class=\\\"icon-bg homeIconsBg icon-bg-new ti\\\"]");
-	
->>>>>>> 3e58a32 (Changes)
+	//By clickTravelInsurance = By.xpath("//i[@class=\\\"icon-bg homeIconsBg icon-bg-new ti\\\"]");
+
 	public TravelInsurancePage(WebDriver driver) {
 		this.driver=driver;
 	}
