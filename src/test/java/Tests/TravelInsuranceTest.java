@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -49,6 +50,8 @@ public class TravelInsuranceTest {
 		ti=new TravelInsurancePage(driver);
 		ti.clickOnTravelInsurance().click();
 		Thread.sleep(3000);
+		String ExpectedUrl = "https://travel.policybazaar.com/?newpq=1&utm_term=newjourney&utm_content=newpq";
+		Assert.assertEquals(driver.getCurrentUrl(), ExpectedUrl);
 
 	}
 	@Test(dependsOnMethods= {"navigateToTravelInsurance"})
@@ -56,6 +59,9 @@ public class TravelInsuranceTest {
 		ti=new TravelInsurancePage(driver);
 		ti.chooseDestination().click();
 		Thread.sleep(3000);
+		Assert.assertTrue(ti.chooseDestination().isDisplayed());
+
+
 	}
 	@Test(dependsOnMethods= {"chooseDestination"})
 	public void chooseStartDate() throws InterruptedException {
@@ -63,9 +69,9 @@ public class TravelInsuranceTest {
 		ti.chooseDate().click();
 		Thread.sleep(3000);
 		ti.chooseStartDate().click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		ti.chooseEndDate().click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		ti.done().click();
 		Thread.sleep(3000);
 		
@@ -86,8 +92,6 @@ public class TravelInsuranceTest {
 		ti.secondAge().click();
 		ti.selctSecondAge().click();
 		ti.healthCondition().click();
-		//ti.submitAge().click();
-		//Thread.sleep(3000);
 		ti.done2().click();
 		Thread.sleep(3000);
 
@@ -98,6 +102,16 @@ public class TravelInsuranceTest {
 	public void explorePages() throws InterruptedException {
 		ti = new TravelInsurancePage(driver);
 		ti.explorePlans().click();
+		Thread.sleep(3000);
+	}
+	@Test(dependsOnMethods= {"explorePages"})
+	public void sortBy() throws InterruptedException {
+		ti=new TravelInsurancePage(driver);
+		Thread.sleep(100000);
+		ti.sortBy().click();
+		//WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(100));
+		//WebElement e = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Sort by']")));
+		//e.click();
 		Thread.sleep(3000);
 	}
 	

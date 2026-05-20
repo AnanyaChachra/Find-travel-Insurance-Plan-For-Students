@@ -23,6 +23,7 @@ public class TravelInsurancePage {
 	By clickDone = By.xpath("//*[@id=\"modal-root\"]/section/article/div/div/div[2]/div[3]/div/button");
 	By clickDone2 = By.xpath("//*[@id=\"modal-root\"]/section/article/div/div/div/div[3]/div/button");
 	By clickOnExplore = By.xpath("//button[@class='travel_main_cta']");
+	By clickOnSortBy = By.xpath("//a[text()='Sort by']");
 	public TravelInsurancePage(WebDriver driver) {
 		this.driver=driver;
 	}
@@ -90,4 +91,9 @@ public class TravelInsurancePage {
 		WebElement ExplorePlans= driver.findElement(clickOnExplore);
 		return ExplorePlans;
 	}
+	public WebElement sortBy() {
+		WebElement SortBy= driver.findElement(clickOnSortBy);
+		return SortBy;
+	}
+	
 }
