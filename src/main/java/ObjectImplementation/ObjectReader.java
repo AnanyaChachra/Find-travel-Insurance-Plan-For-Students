@@ -13,8 +13,8 @@ public class ObjectReader {
 	
 	public ObjectReader() throws IOException {
 		pro=new Properties();
-		String path ="C:\\Users\\2487453\\eclipse-workspace\\Find-travel-Insurance-Plan-For-Students\\object repository\\object.properties";
-		//"C:\Users\2487453\eclipse-workspace\Find-travel-Insurance-Plan-For-Students\object repository\object.properties"
+		String path =System.getProperty("user.dir") + "/object repository/object.properties";
+		
 		file= new FileInputStream(path);
 		pro.load(file);
 	}
@@ -37,5 +37,9 @@ public class ObjectReader {
 	public String getHealthInsuranceLink() {
 		String healthLink=pro.getProperty("policyBazaar.HealthLink");
 		return healthLink;
+	}
+	
+	public void getCarImage() {
+		String xpath=pro.getProperty("policyBazaar.carInsurance.carimage");
 	}
 }
