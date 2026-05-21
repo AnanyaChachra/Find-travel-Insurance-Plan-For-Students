@@ -2,12 +2,10 @@ package Tests;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import ObjectImplementation.ObjectReader;
@@ -21,20 +19,20 @@ public class HealthInsuranceTest {
 	HealthInsurancePage healthPage;
 	List<String> extractedList;
 
-	@BeforeTest
+	//@BeforeTest
 	public void Setup() throws IOException {
-		System.out.println("Enter the browser you need to use from the following options: \n1. chrome \n2. edge \n3. firefox");
-		Scanner sc =new Scanner(System.in);
-		int browserNumber=sc.nextInt();
+		//System.out.println("Enter the browser you need to use from the following options: \n1. chrome \n2. edge \n3. firefox");
+		//Scanner sc =new Scanner(System.in);
+		//int browserNumber=sc.nextInt();
 		
-		bc= new BaseClass();
+		//bc= new BaseClass();
 		or= new ObjectReader();
 		
 		
-		driver=bc.getBrowser(browserNumber);
+		//driver=bc.getBrowser(browserNumber);
 		
 		driver.get(or.getBaseUrl());
-		sc.close();
+		//sc.close();
 		healthPage = new HealthInsurancePage(driver);
 		
 	}
@@ -42,6 +40,13 @@ public class HealthInsuranceTest {
 	//Navigate to health insurance page
 	@Test(priority=1)
     public void navigateToHeathInsurancePage() throws IOException, InterruptedException {
+
+		driver = new ChromeDriver();
+		or= new ObjectReader();
+		BaseClass.driver = driver; 
+		driver.get(or.getBaseUrl());
+
+		healthPage = new HealthInsurancePage(driver);
 		boolean isNavigated = healthPage.navigateToHealthInsurance(or.getHealthInsuranceLink());
 
 	    Assert.assertTrue(isNavigated, "Navigation to health insurance page is failed");
@@ -76,7 +81,7 @@ public class HealthInsuranceTest {
 	        System.out.println("All items displayed successfully");
 	    }
 	
-	@AfterTest
+	@Test(dependsOnMethods="displayOfExtractedItem")
 	public void tearDown() {
 		driver.quit();
 	

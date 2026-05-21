@@ -17,16 +17,25 @@ public class TakeScreenshot {
         this.driver = driver;
     }
  
-    public void takeScreenshot(String name) throws IOException {
+    public String takeScreenshot(String name) throws IOException {
  
-        TakesScreenshot obj = (TakesScreenshot) driver;
+
+    	File dir = new File(System.getProperty("user.dir") + "/screenshots");
+    	if (!dir.exists()) {
+    		dir.mkdir();
+    	}
+
+    	
+    	TakesScreenshot obj = (TakesScreenshot) driver;
  
         File sourceImage = obj.getScreenshotAs(OutputType.FILE);
- 
-        File destinationFile = new File("./screenshots/" + name  + ".png");
+        String path = System.getProperty("user.dir") +"/screenshots/" + name  + ".png";
+        File destinationFile = new File(path);
  
         Files.copy(sourceImage, destinationFile);
  
         System.out.println("Screenshot saved at: " + destinationFile.getAbsolutePath());
+        
+        return path;
     }
 }
