@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -55,8 +56,8 @@ public class CarInsuranceTest {
 		car.navigateToCarInsurance();
 		
 		//Applying explicit wait to wait for the webpage to load
-		//WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(10));
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='brand-ambassador-policybazaar']")));
+		WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='brand-ambassador-policybazaar']")));
 	    
 		//Thread.sleep(3000);
 		String actualURL=driver.getCurrentUrl();
@@ -65,6 +66,21 @@ public class CarInsuranceTest {
 		//verifying whether the correct page has opened or not
 		Assert.assertTrue(actualURL.startsWith(expectedURL));
 	}
+	
+	@Test
+	public void clickOnBrandNewTest() throws InterruptedException {
+		
+		WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(10));
+		
+		WebElement element=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(.,'Click here')]")));
+		
+		
+		
+		element.click();
+		Thread.sleep(3000);
+		//Assert.assertTrue();
+	}
+	
 	
 	@AfterTest
 	public void tearDown() {

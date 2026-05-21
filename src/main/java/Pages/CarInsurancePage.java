@@ -24,5 +24,11 @@ public class CarInsurancePage {
 		
 	}
 	
+	//Proceeding to get insurance for a new car without entering a car number
+	public void clickOnBrandNew() {
+		
+	}
+	
+	
 	
 }
