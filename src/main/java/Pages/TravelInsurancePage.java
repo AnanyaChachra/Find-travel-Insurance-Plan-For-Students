@@ -1,5 +1,8 @@
 package Pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,12 +10,13 @@ import org.openqa.selenium.WebElement;
 public class TravelInsurancePage {
 
 	WebDriver driver;
+	List<WebElement> filters;
+
 	By clickTravelInsurance = By.xpath("//i[@class=\"icon-bg homeIconsBg icon-bg-new ti\"]");
 	By clickOnUSA = By.xpath("//img[@alt='USA_Image']");
 	By clickOnDate = By.xpath("//div[@class=\"newPq_duration_wrap__dateCol\"][1]//span");
-	By clickOnStartDate = By.xpath("//span[text()='20']");
+	By clickOnStartDate = By.xpath("//span[text()='29']");
 	By clickOnEndDate = By.xpath("//span[text()='31']");
-	By clickOnAddTraveller = By.xpath("//a[text()='Add']");
 	By clickOnTwo = By.xpath("//div[@class='memSelectRadioWrapper__radio'][2]");
 	By clickOnDropDown1 = By.xpath("//div[@class='inputRow select '][1]");
 	By selectAge1 = By.xpath("//label[text()='22 years']");
@@ -23,11 +27,8 @@ public class TravelInsurancePage {
 	By clickDone = By.xpath("//*[@id=\"modal-root\"]/section/article/div/div/div[2]/div[3]/div/button");
 	By clickDone2 = By.xpath("//*[@id=\"modal-root\"]/section/article/div/div/div/div[3]/div/button");
 	By clickOnExplore = By.xpath("//button[@class='travel_main_cta']");
-	By clickOnSortBy = By.xpath("//a[text()='Sort by']");
 
 	
-	
-	//By clickTravelInsurance = By.xpath("//i[@class=\\\"icon-bg homeIconsBg icon-bg-new ti\\\"]");
 
 	public TravelInsurancePage(WebDriver driver) {
 		this.driver=driver;
@@ -52,10 +53,6 @@ public class TravelInsurancePage {
 	public WebElement chooseEndDate() {
 		WebElement EndDate= driver.findElement(clickOnEndDate);
 		return EndDate;
-	}
-	public WebElement addTravellers() {
-		WebElement AddTraveller= driver.findElement(clickOnAddTraveller);
-		return AddTraveller;
 	}
 	public WebElement selectTwo() {
 		WebElement SelectTwo= driver.findElement(clickOnTwo);
@@ -97,9 +94,23 @@ public class TravelInsurancePage {
 		WebElement ExplorePlans= driver.findElement(clickOnExplore);
 		return ExplorePlans;
 	}
-	public WebElement sortBy() {
-		WebElement SortBy= driver.findElement(clickOnSortBy);
-		return SortBy;
-	}
-	
+	public List<String> extractFilters() {
+
+		List<WebElement> filterElements = driver.findElements(By.xpath("//a[@class=' ']"));
+
+        List<String> list = new ArrayList<>();
+
+        for (WebElement filter : filterElements) {
+            String text = filter.getText().trim();
+            if (!text.isEmpty()) {
+                list.add(text);
+            }
+        }
+        return list;
+    }
+	public void displayFilters(List<String> list) {
+       for (String item : list) {
+            System.out.println("- " + item);
+        }
+    }
 }

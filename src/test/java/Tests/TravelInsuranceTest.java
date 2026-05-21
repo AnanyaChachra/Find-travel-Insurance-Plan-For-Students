@@ -2,6 +2,7 @@ package Tests;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 import java.util.Scanner;
 
 import org.openqa.selenium.By;
@@ -23,6 +24,7 @@ public class TravelInsuranceTest {
 	BaseClass bc;
 	ObjectReader or;
 	TravelInsurancePage ti;
+	List<String> extractedList;
 
 	@BeforeTest
 	public void Setup() throws IOException {
@@ -69,9 +71,9 @@ public class TravelInsuranceTest {
 		ti.chooseDate().click();
 		Thread.sleep(3000);
 		ti.chooseStartDate().click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		ti.chooseEndDate().click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		ti.done().click();
 		Thread.sleep(3000);
 		
@@ -102,14 +104,25 @@ public class TravelInsuranceTest {
 		ti.explorePlans().click();
 		Thread.sleep(3000);
 	}
-	@Test(dependsOnMethods= {"explorePages"})
-	public void sortBy() throws InterruptedException {
-		ti=new TravelInsurancePage(driver);
-		Thread.sleep(100000);
-		ti.sortBy().click();
-		Thread.sleep(3000);
-	}
 	
+	@Test(dependsOnMethods="explorePages")
+    public void extractionOfFilters() {
+		ti = new TravelInsurancePage(driver);
+        extractedList = ti.extractFilters();
+        Assert.assertTrue(extractedList.size() > 0, "Failed: List is empty");
+        System.out.println(extractedList.size() + " Items extracted");
+    }
+	@Test(dependsOnMethods="extractionOfFilters")
+    public void displayOfExtractedItem() {
+		ti = new TravelInsurancePage(driver);
+        if (extractedList == null || extractedList.size() == 0) {
+        	extractedList = ti.extractFilters();
+            
+        }
+        ti.displayFilters(extractedList);
+        Assert.assertTrue(extractedList.size() > 0, "No data to display");
+        System.out.println("All filters displayed successfully");
+    }
 	
 	@AfterTest
 	public void tearDown() {
