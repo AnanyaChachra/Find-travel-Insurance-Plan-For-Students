@@ -79,8 +79,6 @@ public class TravelInsuranceTest {
 	@Test(dependsOnMethods= {"chooseStartDate"})
 	public void addTravellers() throws InterruptedException {
 		ti=new TravelInsurancePage(driver);
-		//ti.addTravellers().click();
-		//Thread.sleep(3000);
 		ti.selectTwo().click();
 		Thread.sleep(3000);
 	}
