@@ -65,6 +65,7 @@ public class HealthInsuranceTest {
 	    }
 	    
 	    //Displaying of extracted items 
+	    //Adding them 
 	    @Test(dependsOnMethods="extractionOfMenuItems")
 	    public void displayOfExtractedItem() {
 	        if (extractedList == null || extractedList.size() == 0) {

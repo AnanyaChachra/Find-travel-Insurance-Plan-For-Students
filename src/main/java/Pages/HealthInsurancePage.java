@@ -45,6 +45,7 @@ public class HealthInsurancePage {
 	    }
 
 	    //Displaying extracted items
+	    //Display them
 	    public void displayMenuItems(List<String> list) {
 	        System.out.println("Health Insurance Plans Are:");
 	        for (String item : list) {
