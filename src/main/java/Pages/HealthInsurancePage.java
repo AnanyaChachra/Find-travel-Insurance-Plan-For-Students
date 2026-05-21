@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 public class HealthInsurancePage {
 
 	 WebDriver driver;
+	 List<WebElement> menuItems;
 	 public HealthInsurancePage(WebDriver driver) {
 	        this.driver = driver;
 	    }
@@ -25,14 +26,13 @@ public class HealthInsurancePage {
 	    }
 
 	    //Checking visibility of menu items
-	    public boolean MenuItemsVisible() {
-	        List<WebElement> menuItems = driver.findElements(By.xpath("//div[contains(@class,'leftCol')]/descendant::p"));
+	    public boolean menuItemsVisible() {
+	        menuItems = driver.findElements(By.xpath("//div[contains(@class,'leftCol')]/descendant::p"));
 	        return menuItems.size() > 0;
 	    }
 
 	    //Extracting and storing menu items in list
 	    public List<String> extractHealthInsuranceMenu() {
-	        List<WebElement> menuItems = driver.findElements(By.xpath("//div[contains(@class,'leftCol')]/descendant::p"));
 	        List<String> list = new ArrayList<>();
 
 	        for (WebElement item : menuItems) {
@@ -45,6 +45,7 @@ public class HealthInsurancePage {
 	    }
 
 	    //Displaying extracted items
+	    //Display them
 	    public void displayMenuItems(List<String> list) {
 	        System.out.println("Health Insurance Plans Are:");
 	        for (String item : list) {
