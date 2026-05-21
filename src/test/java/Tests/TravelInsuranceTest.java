@@ -69,9 +69,9 @@ public class TravelInsuranceTest {
 		ti.chooseDate().click();
 		Thread.sleep(3000);
 		ti.chooseStartDate().click();
-		//Thread.sleep(3000);
+		Thread.sleep(3000);
 		ti.chooseEndDate().click();
-		//Thread.sleep(3000);
+		Thread.sleep(3000);
 		ti.done().click();
 		Thread.sleep(3000);
 		
@@ -109,9 +109,6 @@ public class TravelInsuranceTest {
 		ti=new TravelInsurancePage(driver);
 		Thread.sleep(100000);
 		ti.sortBy().click();
-		//WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(100));
-		//WebElement e = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Sort by']")));
-		//e.click();
 		Thread.sleep(3000);
 	}
 	
