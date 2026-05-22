@@ -6,6 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseClass {
 	
+	public static WebDriver driver;
+
 	public WebDriver getBrowser(int webdriver) {
 		WebDriver driver=null;
 		
