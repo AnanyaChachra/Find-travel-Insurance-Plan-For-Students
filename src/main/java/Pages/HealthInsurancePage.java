@@ -94,6 +94,7 @@ public class HealthInsurancePage {
 	        }
 	        System.out.println("Total plans: " + list.size());
 	    }
+	    
 	
 }
 

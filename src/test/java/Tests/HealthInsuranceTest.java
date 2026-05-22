@@ -36,7 +36,6 @@ public class HealthInsuranceTest {
 		//bc= new BaseClass();
 		or= new ObjectReader();
 		
-		
 		//driver=bc.getBrowser(browserNumber);
 		
 		driver.get(or.getBaseUrl());
