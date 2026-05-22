@@ -1,10 +1,18 @@
 package Tests;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -80,8 +88,41 @@ public class HealthInsuranceTest {
 	        Assert.assertTrue(extractedList.size() > 0, "No data to display");
 	        System.out.println("All items displayed successfully");
 	    }
+	    
+	    //Displaying items for each type of plan
+	    @Test(dependsOnMethods="displayOfExtractedItem")
+	    public void extractPlanNamesForEachTab() throws InterruptedException {
+	        Map<String, List<String>> allPlans = new HashMap<>();
+	        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+	        List<WebElement> tabs = driver.findElements(By.xpath("//ul[contains(@class,'tabContainer__tabItem')]/li"));
+
+	        for (int i = 0; i < tabs.size(); i++) {
+	        	tabs = driver.findElements(By.xpath("//ul[contains(@class,'tabContainer__tabItem')]/li"));
+	            String tabName = tabs.get(i).getText();
+	            js.executeScript("arguments[0].scrollIntoView(true);", tabs.get(i));
+	            Thread.sleep(1000);
+	            js.executeScript("arguments[0].click();", tabs.get(i));
+	            Thread.sleep(4000);
+	            List<WebElement> planElements = driver.findElements(By.xpath("//div[contains(@class,'leftCol__row1')]/p[1]"));
+	            List<String> plans = new ArrayList<>();
+	            for (WebElement plan : planElements) {
+	                String name = plan.getText().trim();
+	                if (!name.isEmpty()) {
+	                    plans.add(name);
+	                }
+	            }
+	            allPlans.put(tabName, plans);
+	            System.out.println("\nTab: " + tabName);
+	            for (String plan : plans) {
+	                System.out.println("  - " + plan);
+	            }
+	        }
+
+	        Assert.assertTrue(allPlans.size() > 0, "No tabs found");
+	    }
 	
-	@Test(dependsOnMethods="displayOfExtractedItem")
+	@Test(dependsOnMethods="extractPlanNamesForEachTab")
 	public void tearDown() {
 		driver.quit();
 	
