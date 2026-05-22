@@ -3,6 +3,7 @@
 <suite name="Default suite" guice-stage="DEVELOPMENT">
 	<listeners>
 		<listener class-name="Tests.ExtentReportManager"/>
+		<listener class-name="Utilities.ExcelReportListener"/>
 	</listeners>
   <test thread-count="2" name="travel insurance test" verbose="2">
     <classes>
