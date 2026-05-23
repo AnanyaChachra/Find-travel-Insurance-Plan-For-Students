@@ -4,6 +4,7 @@
 
 	<listeners>
 		<listener class-name="Tests.ExtentReportManager"/>
+		<listener class-name="Utilities.ExcelReportListener"/>
 	</listeners>
   <test thread-count="3" name="travel insurance test" verbose="2">
     <classes>
