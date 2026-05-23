@@ -1,0 +1,312 @@
+.CarRegDetails_blueTextButton__P1blP.blueTextButton.fontMedium
+
+package Tests;
+
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Scanner;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import ObjectImplementation.ObjectReader;
+import Pages.CancerInsurancePage;
+import base.BaseClass;
+
+public class CancerInsuranceTest {
+	WebDriver driver;
+	BaseClass bc;
+	ObjectReader or;
+	CancerInsurancePage can;
+	
+//	@Test
+//	public void debug() {
+//		System.out.println(System.getProperty("user.dir")+"/object repository/object.properties");
+//	}
+
+	@BeforeTest
+	public void Setup() throws IOException {
+		System.out.println("Enter the browser you need to use from the following options: \n1. chrome \n2. edge \n3. firefox");
+		Scanner sc =new Scanner(System.in);
+		int browserNumber=sc.nextInt();
+		
+		bc= new BaseClass();
+		or= new ObjectReader();
+		
+		driver=bc.getBrowser(browserNumber);
+		
+		driver.manage().window().maximize();
+		
+		can=new CancerInsurancePage(driver);
+		
+		driver.get(or.getBaseUrl());
+		sc.close();
+		
+		
+	}
+//	
+	
+	@Test(priority = 0)
+	//Navigation to Car Insurance
+	public void getAllProductsTest() throws InterruptedException {
+		//String expectedURL=or.getCarInsuranceLink();
+		
+		can.getAllProducts();
+		
+		//Applying explicit wait to wait for the webpage to load
+		WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[normalize-space()='More Products']")));
+	    
+	
+		
+	}
+	
+	@Test(dependsOnMethods="getAllProductsTest")
+	public void getCancerInsuranceTest() throws InterruptedException {
+				can.getCancerInsurance();
+		
+		
+	}
+	
+	@Test(dependsOnMethods="getCancerInsuranceTest")
+	public void setGenderTest() throws InterruptedException {
+		can.setGender();
+		Thread.sleep(3000);
+	}
+	
+	
+	@Test(dependsOnMethods="setGenderTest")
+	public void setPersonTest() throws InterruptedException {
+		can.setPerson();
+		Thread.sleep(3000);
+	}
+	
+	
+	@Test(dependsOnMethods={"setGenderTest","setPersonTest"})
+	public void clickContinueTest() throws InterruptedException {
+		can.clickContinue();
+		Thread.sleep(3000);
+	}
+	
+	@Test(dependsOnMethods="clickContinueTest")
+	public void setAgeTest() throws InterruptedException {
+		can.setAge();
+		Thread.sleep(3000);
+	}
+	
+	@Test(dependsOnMethods="setAgeTest")
+	public void clickContinueAfterAgeTest() throws InterruptedException {
+		can.clickContinueAfterAge();
+		Thread.sleep(3000);
+	}
+	
+	@Test(dependsOnMethods="clickContinueAfterAgeTest")
+	public void setCityTest() throws InterruptedException {
+		can.setCity();
+		Thread.sleep(3000);
+	}
+	
+	@Test(dependsOnMethods="setCityTest")
+	public void setUsernameAndPasswordTest() throws InterruptedException {
+		can.setUsernameAndPassword();
+		Thread.sleep(3000);
+	}
+	
+	@Test(dependsOnMethods="setUsernameAndPasswordTest")
+	public void clickContinueFinalTest() throws InterruptedException {
+		can.clickContinueFinal();
+		Thread.sleep(3000);
+	}
+	
+	@Test(dependsOnMethods="setUsernameAndPasswordTest")
+	public void takeScreenshotMessageTest() throws InterruptedException, IOException {
+		can.takeScreenshotMessage();
+		Thread.sleep(3000);
+	}
+	
+	@AfterTest
+	public void tearDown() {
+		driver.quit();
+		
+	}
+}
+
+-----------------------------------------------------------------------------------------------------
+
+package Pages;
+
+
+
+import java.io.IOException;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import Utilities.TakeScreenshot;
+
+public class CancerInsurancePage {
+	
+	WebDriver driver;
+	TakeScreenshot ts;
+	
+	public CancerInsurancePage(WebDriver driver) {
+		this.driver=driver;
+	}
+	
+	//Per page Repository
+	//opening car insurance page
+	By allProducts=By.xpath("(//a[normalize-space()='View all products'])[1]");
+	By cancerInsurance=By.xpath("//a[@oncontextmenu=\"HandleRightClickProduct(this,'Icon_pg','click_Domestic','health_icon_pg_cancer_insurance_dom', 'https://www.policybazaar.com/health-insurance/cancer-insurance/', 'health_icon_pg_cancer_insurance_dom')\"]");
+	By gender=By.cssSelector("label[for='female']");
+	By whomToBuyFor=By.xpath("//label[normalize-space()='Self']");
+	By continues=By.cssSelector(".button.btnHealthStep1");
+	By selectAge=By.xpath("//select[@name='member_age']");
+	By continueAfterAge=By.cssSelector(".button.btnHealthStep2");
+	By selectCity=By.xpath("//div[@class='radio_pills dis_popular_city']//span[contains(text(),'Pune')]");
+	By sendName=By.cssSelector(".fullWidht.txtName");
+	By sendPhoneNum=By.cssSelector("#name5");
+	By continueFinal=By.cssSelector("#btnHealthStep4");
+
+	
+	
+	//clicking on view all products to fetch all the products 
+	
+	public void getAllProducts() throws InterruptedException {
+		WebElement products=driver.findElement(allProducts);
+
+		Actions action=new Actions(driver);
+
+		action.click(products).perform();
+		System.out.println("View all products opened");
+	}
+	
+	
+	//Clicking on cancer Insurance
+	public void getCancerInsurance() {
+    
+		WebElement element=driver.findElement(cancerInsurance);
+		element.click();
+		System.out.println("clicked on cancer insurance");
+	}
+	
+	//Selecting gender
+	public void setGender() {
+		WebElement selectGender=driver.findElement(gender);
+		
+		if(!selectGender.isSelected()) {
+			selectGender.click();
+		}
+		
+		System.out.println("Female selected");
+	}
+	
+	//Selecting whom to take it for
+	public void setPerson() {
+		WebElement person=driver.findElement(whomToBuyFor);
+		
+		if(!person.isSelected()) {
+			person.click();
+		}
+		
+		System.out.println("Self selected");
+	}
+	
+	//proceeding further by clicking on continue
+	public void clickContinue() {
+     
+		WebElement continueButton=driver.findElement(continues);
+		
+		if(continueButton.isEnabled()) {
+			continueButton.click();
+		}
+		
+		System.out.println("Click continue");
+	}
+	
+	//Selecting age
+	public void setAge() {
+	     
+		WebElement age=driver.findElement(selectAge);
+		Select select=new Select(age);
+		
+		select.selectByContainsVisibleText("22 Years");
+		
+		
+		System.out.println("Age selected");
+	}
+	
+	//Clicking continue after selecting the age
+	public void clickContinueAfterAge() {
+	     
+		WebElement continueButtonAge=driver.findElement(continueAfterAge);
+		
+		if(continueButtonAge.isEnabled()) {
+			continueButtonAge.click();
+		}
+		
+		System.out.println("Continue selected after age");
+	}
+	
+	//Selecting the city that we need to choose
+	public void setCity() {
+
+		WebElement city=driver.findElement(selectCity);
+		
+		if(city.isEnabled()) {
+			city.click();
+		}
+		
+		System.out.println("Pune selected");
+	}
+	
+	//Filling the invalid details
+	public void setUsernameAndPassword() {
+	     
+		WebElement username=driver.findElement(sendName);
+		WebElement phoneNum=driver.findElement(sendPhoneNum);
+
+		username.sendKeys("ABCDEF GHIJK");
+		phoneNum.sendKeys("98768560");
+
+		
+		System.out.println("Details sent");
+	}
+	
+	//Click on continue after entering invalid details
+	public void clickContinueFinal() {
+	     
+		WebElement continueButtonFinal=driver.findElement(continueFinal);
+		
+
+		Actions action=new Actions(driver);
+
+		action.click(continueButtonFinal).perform();
+		
+		System.out.println("Continue final");
+	}
+	
+	//Taking ScreenShot after getting the invalid output
+	public void takeScreenshotMessage() throws IOException {
+		ts=new TakeScreenshot(driver);
+		
+		ts.takeScreenshot("InvalidNumberMessage");
+		System.out.println("Screenshot taken");
+		
+	}
+	
+	
+}

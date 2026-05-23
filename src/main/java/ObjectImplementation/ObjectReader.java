@@ -29,8 +29,8 @@ public class ObjectReader {
 		return travelLink;
 	}
 	
-	public String getCarInsuranceLink() {
-		String carLink=pro.getProperty("policyBazaar.carLink");
+	public String getCancerInsuranceLink() {
+		String carLink=pro.getProperty("policyBazaar.cancerLink");
 		return carLink;
 	}
 	
@@ -39,7 +39,5 @@ public class ObjectReader {
 		return healthLink;
 	}
 	
-	public void getCarImage() {
-		String xpath=pro.getProperty("policyBazaar.carInsurance.carimage");
-	}
+	
 }
