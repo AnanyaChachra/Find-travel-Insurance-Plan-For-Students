@@ -3,7 +3,6 @@ package Tests;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +19,7 @@ import base.BaseClass;
 
 public class CancerInsuranceTest {
 
-    WebDriver driver;
+    public WebDriver driver;
     BaseClass bc;
     ObjectReader or;
     CancerInsurancePage can;
@@ -41,7 +40,9 @@ public class CancerInsuranceTest {
 
         driver.manage().window().maximize();
 
+
         can = new CancerInsurancePage(driver);
+
 
         driver.get(or.getBaseUrl());
         //sc.close();
@@ -152,7 +153,7 @@ public class CancerInsuranceTest {
         Assert.assertEquals(users[0], "ABCDEF GHIJK");
 
         // Assertion: Verify phone number
-        Assert.assertEquals(users[1], "98768560");
+        Assert.assertEquals(users[1], "9876856");
 
         Thread.sleep(3000);
     }

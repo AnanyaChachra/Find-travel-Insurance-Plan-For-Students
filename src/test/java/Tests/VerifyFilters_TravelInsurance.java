@@ -16,9 +16,9 @@ import ObjectImplementation.ObjectReader;
 import Pages.TravelInsurancePage;
 import base.BaseClass;
  
-public class TravelInsuranceTest {
+public class VerifyFilters_TravelInsurance {
  
-    WebDriver driver;
+    public WebDriver driver;
     BaseClass bc;
     ObjectReader or;
     TravelInsurancePage ti;

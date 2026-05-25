@@ -3,20 +3,19 @@
 <suite name="Default suite" guice-stage="DEVELOPMENT">
 
 	<listeners>
-		<listener class-name="Tests.ExtentReportManager"/>
+		<listener class-name="Utilities.ExtentReportManager"/>
 		<listener class-name="Utilities.ExcelReportListener"/>
 	</listeners>
-  <test thread-count="3" name="travel insurance test" verbose="2">
+   <test thread-count="3" name="travel insurance test" verbose="2">
     <classes>
-      <class name="Tests.TravelInsuranceTest"/>
+      <class name="Tests.VerifyFilters_TravelInsurance"/>
     </classes>
-  </test> <!-- Default test -->
-  <test thread-count="3" name="health insurance test" verbose="2">
+  </test> 
+	<test thread-count="3" name="health insurance test" verbose="2">
     <classes>
-      <class name="Tests.HealthInsuranceTest"/>
+      <class name="Tests.Verify_HealthInsurancePlans"/>
     </classes>
   </test>
-  
   <test thread-count="3" name="cancer insurance test" verbose="2">
     <classes>
       <class name="Tests.CancerInsuranceTest"/>
