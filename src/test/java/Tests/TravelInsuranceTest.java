@@ -196,6 +196,7 @@ public class TravelInsuranceTest {
  
         System.out.println("Filters displayed successfully");
     }
+    
 
     @AfterTest
     public void tearDown() {

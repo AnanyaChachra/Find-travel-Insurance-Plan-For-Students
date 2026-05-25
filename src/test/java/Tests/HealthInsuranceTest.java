@@ -40,6 +40,7 @@ public class HealthInsuranceTest {
 		
 	}
 	
+	
 	//Navigate to health insurance page
 	@Test(priority=1)
     public void navigateToHeathInsurancePage() throws IOException, InterruptedException {
