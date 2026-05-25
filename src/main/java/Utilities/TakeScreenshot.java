@@ -17,7 +17,7 @@ public class TakeScreenshot {
  
     public String takeScreenshot(String name) throws IOException {
         // Defines target/screenshots/ directory
-        String dirPath = System.getProperty("user.dir") + File.separator + "screenshots" + File.separator;
+        String dirPath = System.getProperty("user.dir") + File.separator + "target" + File.separator + "screenshots" + File.separator;
 
         File dir = new File(dirPath);
         if (!dir.exists()) {

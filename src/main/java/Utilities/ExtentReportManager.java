@@ -10,6 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import Utilities.TakeScreenshot;
 
 public class ExtentReportManager implements ITestListener {
     public static ExtentSparkReporter sparkReporter;

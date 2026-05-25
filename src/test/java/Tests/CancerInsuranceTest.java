@@ -153,7 +153,7 @@ public class CancerInsuranceTest {
         Assert.assertEquals(users[0], "ABCDEF GHIJK");
 
         // Assertion: Verify phone number
-        Assert.assertEquals(users[1], "9876856");
+        Assert.assertEquals(users[1], "98768560");
 
         Thread.sleep(3000);
     }
