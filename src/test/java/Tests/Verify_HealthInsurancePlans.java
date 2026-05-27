@@ -1,7 +1,6 @@
 package Tests;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,13 +11,13 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import ObjectImplementation.ObjectReader;
 import Pages.HealthInsurancePage;
+import Utilities.WaitClass;
 import base.BaseClass;
 
 public class Verify_HealthInsurancePlans {
@@ -27,6 +26,7 @@ public class Verify_HealthInsurancePlans {
 	ObjectReader or;
 	HealthInsurancePage healthPage;
 	List<String> extractedList;
+	WaitClass wait;
 
 	@BeforeTest
 	public void Setup() throws IOException {
@@ -34,7 +34,7 @@ public class Verify_HealthInsurancePlans {
 		
 		driver = new ChromeDriver();
 		or= new ObjectReader();
-		//BaseClass.driver = driver; 
+		wait = new WaitClass();
 		driver.get(or.getBaseUrl());
 		driver.manage().window().maximize();
 		
@@ -92,9 +92,9 @@ public class Verify_HealthInsurancePlans {
 	        	tabs = driver.findElements(By.xpath("//ul[contains(@class,'tabContainer__tabItem')]/li"));
 	            String tabName = tabs.get(i).getText();
 	            js.executeScript("arguments[0].scrollIntoView(true);", tabs.get(i));
-	            Thread.sleep(1000);
+	            wait.waitingForTheElementToLoad();
 	            js.executeScript("arguments[0].click();", tabs.get(i));
-	            Thread.sleep(4000);
+	            wait.waitingForTheElementToLoad();
 	            List<WebElement> planElements = driver.findElements(By.xpath("//div[contains(@class,'leftCol__row1')]/p[1]"));
 	            List<String> plans = new ArrayList<>();
 	            for (WebElement plan : planElements) {

@@ -3,17 +3,17 @@ package Tests;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
-import java.util.Scanner;
- 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
- 
+
 import ObjectImplementation.ObjectReader;
 import Pages.TravelInsurancePage;
+import Utilities.WaitClass;
 import base.BaseClass;
  
 public class VerifyFilters_TravelInsurance {
@@ -23,13 +23,14 @@ public class VerifyFilters_TravelInsurance {
     ObjectReader or;
     TravelInsurancePage ti;
     List<String> extractedList;
+    WaitClass wait;
 
     @BeforeTest
     public void Setup() throws IOException {
  
-        // Initialize base class and object reader
         bc = new BaseClass();
         or = new ObjectReader();
+        wait = new WaitClass();
  
         // Launch selected browser
         driver = bc.getBrowser(1);
@@ -52,8 +53,7 @@ public class VerifyFilters_TravelInsurance {
  
         // Click on travel insurance link
         ti.clickOnTravelInsurance().click();
- 
-        Thread.sleep(3000);
+        wait.waitingForThePageToLoad();
  
         // Expected URL after navigation
         String expectedUrl = "https://travel.policybazaar.com/?newpq=1&utm_term=newjourney&utm_content=newpq";
@@ -78,8 +78,8 @@ public class VerifyFilters_TravelInsurance {
         // Click destination
         if(!destination.isSelected())
         	destination.click();
-        Thread.sleep(3000);
- 
+        wait.waitingForTheElementToLoad();
+        
         // Verify element is enabled
         Assert.assertTrue(destination.isEnabled(), "Destination not enabled");
     }
@@ -89,7 +89,7 @@ public class VerifyFilters_TravelInsurance {
  
         // Open date picker
         ti.chooseDate().click();
-        Thread.sleep(2000);
+        wait.waitingForTheElementToLoad();
  
         // Validate date elements availability
         Assert.assertTrue(ti.chooseStartDate().isDisplayed(), "Start date not visible");
@@ -101,7 +101,7 @@ public class VerifyFilters_TravelInsurance {
  
         // Confirm selection
         ti.done().click();
-        Thread.sleep(3000);
+        wait.waitingForTheElementToLoad();
  
         // Validate URL still contains travel keyword
         Assert.assertTrue(driver.getCurrentUrl().contains("travel"),
@@ -119,7 +119,7 @@ public class VerifyFilters_TravelInsurance {
  
         // Click option
         travellers.click();
-        Thread.sleep(3000);
+        wait.waitingForTheElementToLoad();
  
         // Validate usability
         Assert.assertTrue(travellers.isEnabled(), "Traveller option not enabled");
@@ -144,7 +144,7 @@ public class VerifyFilters_TravelInsurance {
  
         // Confirm selections
         ti.done2().click();
-        Thread.sleep(3000);
+        wait.waitingForTheElementToLoad();
  
         // Validate navigation success
         Assert.assertTrue(driver.getCurrentUrl().contains("travel"),
@@ -159,7 +159,7 @@ public class VerifyFilters_TravelInsurance {
  
         // Click explore plans
         ti.explorePlans().click();
-        Thread.sleep(3000);
+        wait.waitingForThePageToLoad();
  
         // Validate navigation
         Assert.assertTrue(driver.getCurrentUrl().contains("travel"),
