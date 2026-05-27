@@ -21,8 +21,8 @@ import ObjectImplementation.ObjectReader;
 import Pages.HealthInsurancePage;
 import base.BaseClass;
 
-public class HealthInsuranceTest {
-	WebDriver driver;
+public class Verify_HealthInsurancePlans {
+	public WebDriver driver;
 	BaseClass bc;
 	ObjectReader or;
 	HealthInsurancePage healthPage;

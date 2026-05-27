@@ -1,37 +1,57 @@
 package Tests;
  
 import java.io.File;
+
 import java.io.IOException;
+
 import java.time.Duration;
+ 
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.Assert;
+
 import org.testng.annotations.AfterTest;
+
 import org.testng.annotations.BeforeTest;
+
 import org.testng.annotations.Test;
+ 
 import ObjectImplementation.ObjectReader;
+
 import Pages.CancerInsurancePage;
+
 import Utilities.WaitClass;
+
 import base.BaseClass;
  
 public class CancerInsuranceTest {
  
     public WebDriver driver;
+
     BaseClass bc;
+
     ObjectReader or;
+
     CancerInsurancePage can;
+
     WebDriverWait wait;
+
     WaitClass w;
  
     @BeforeTest
+
     public void Setup() throws IOException {
  
         bc = new BaseClass();
 
         or = new ObjectReader();
-        w = new WaitClass();
+       w = new WaitClass();
  
         driver = bc.getBrowser(1);
 
@@ -79,6 +99,8 @@ public class CancerInsuranceTest {
  
         can.getCancerInsurance();
 
+        //Thread.sleep(3000);
+
         w.waitingForTheElementToLoad();
  
         // Assertion: Verify URL contains "cancer"
@@ -97,6 +119,8 @@ public class CancerInsuranceTest {
  
         boolean gender = can.setGender();
 
+        //Thread.sleep(3000);
+
         w.waitingForTheElementToLoad();
  
         // Assertion: Verify gender is selected
@@ -113,6 +137,8 @@ public class CancerInsuranceTest {
  
         boolean person = can.setPerson();
 
+        //Thread.sleep(3000);
+
         w.waitingForTheElementToLoad();
  
         // Assertion: Verify person selection
@@ -128,6 +154,8 @@ public class CancerInsuranceTest {
     public void clickContinueTest() throws InterruptedException {
  
         boolean continueFirst = can.clickContinue();
+
+        //Thread.sleep(3000);
 
         w.waitingForTheElementToLoad();
  
@@ -149,6 +177,8 @@ public class CancerInsuranceTest {
 
         Assert.assertEquals(age, "22 Years");
  
+        //Thread.sleep(3000);
+
         w.waitingForTheElementToLoad();
 
     }
@@ -160,6 +190,8 @@ public class CancerInsuranceTest {
     public void clickContinueAfterAgeTest() throws InterruptedException {
  
         boolean continueSecond = can.clickContinueAfterAge();
+
+        //Thread.sleep(3000);
 
         w.waitingForTheElementToLoad();
  
@@ -181,6 +213,8 @@ public class CancerInsuranceTest {
 
         Assert.assertTrue(city, "city selection failed");
  
+        //Thread.sleep(3000);
+
         w.waitingForTheElementToLoad();
 
     }
@@ -201,6 +235,8 @@ public class CancerInsuranceTest {
 
         Assert.assertEquals(users[1], "98768560");
  
+        //Thread.sleep(3000);
+
         w.waitingForTheElementToLoad();
 
     }
@@ -212,6 +248,8 @@ public class CancerInsuranceTest {
     public void clickContinueFinalTest() throws InterruptedException {
  
         can.clickContinueFinal();
+
+        //Thread.sleep(3000);
 
         w.waitingForTheElementToLoad();
 
@@ -225,6 +263,8 @@ public class CancerInsuranceTest {
  
         can.takeScreenshotMessage();
 
+        //Thread.sleep(3000);
+
         w.waitingForThePageToLoad();
  
         String path = System.getProperty("user.dir")
@@ -234,6 +274,7 @@ public class CancerInsuranceTest {
         File file = new File(path);
  
         // Assertion: Verify screenshot file exists
+
         Assert.assertTrue(file.exists(), "Screenshot not created");
 
     }
