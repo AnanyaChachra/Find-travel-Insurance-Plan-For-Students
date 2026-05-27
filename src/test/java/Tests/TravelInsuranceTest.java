@@ -27,26 +27,16 @@ public class TravelInsuranceTest {
     @BeforeTest
     public void Setup() throws IOException {
  
-        // Prompt user to select browser
-        System.out.println("Enter browser:\n1.Chrome\n2.Edge\n3.Firefox");
- 
-        // Read browser choice from console
-        Scanner sc = new Scanner(System.in);
-        int browserNumber = sc.nextInt();
- 
         // Initialize base class and object reader
         bc = new BaseClass();
         or = new ObjectReader();
  
         // Launch selected browser
-        driver = bc.getBrowser(browserNumber);
+        driver = bc.getBrowser(1);
  
         // Navigate to base URL
         driver.get(or.getBaseUrl());
- 
-        // Close scanner to avoid resource leak
-        sc.close();
- 
+
         // Configure implicit wait
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
  
@@ -63,7 +53,6 @@ public class TravelInsuranceTest {
         // Click on travel insurance link
         ti.clickOnTravelInsurance().click();
  
-        // Static wait (not recommended in real frameworks)
         Thread.sleep(3000);
  
         // Expected URL after navigation
@@ -86,9 +75,9 @@ public class TravelInsuranceTest {
  
         // Verify element is visible
         Assert.assertTrue(destination.isDisplayed(), "Destination not visible");
- 
-        // Click destination dropdown
-        destination.click();
+        // Click destination
+        if(!destination.isSelected())
+        	destination.click();
         Thread.sleep(3000);
  
         // Verify element is enabled
@@ -207,6 +196,7 @@ public class TravelInsuranceTest {
  
         System.out.println("Filters displayed successfully");
     }
+    
 
     @AfterTest
     public void tearDown() {

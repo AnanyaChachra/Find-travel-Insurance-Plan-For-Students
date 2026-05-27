@@ -49,31 +49,32 @@ public class ExtentReportManager implements ITestListener
         test.log(Status.PASS, "Test case Passed: " + result.getName());
     }
  
-    public void onTestFailure(ITestResult result)
-    {
+    @Override
+    public void onTestFailure(ITestResult result) {
+        
         test = extent.createTest(result.getName());
         test.log(Status.FAIL, "Test case Failed: " + result.getName());
         test.log(Status.FAIL, "Test case failed cause is: " + result.getThrowable());
 
         try {
-        //if (ts != null) {   // ✅ prevent NullPointerException
-           // ts.takeScreenshot(result.getName());
-        	ts = new TakeScreenshot(BaseClass.driver);
-            String path = ts.takeScreenshot(result.getName());
-            test.addScreenCaptureFromPath(path);
-       //} 
-        //else {
-          //  System.out.println("Screenshot skipped: ts is null");
-        //}
-        }
-        catch (Exception e) {
-        e.printStackTrace();
-        }
+            // Ensure driver is initialized
+            if (BaseClass.driver != null) {
 
-        
+                TakeScreenshot ts = new TakeScreenshot(BaseClass.driver);
+                String path = ts.takeScreenshot(result.getName());
 
+                test.addScreenCaptureFromPath(path);
+
+            } else {
+                test.log(Status.WARNING, "Driver is null. Screenshot not captured.");
+            }
+
+        } catch (Exception e) {
+            test.log(Status.FAIL, "Exception while capturing screenshot: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
- 
+    
     public void onTestSkipped(ITestResult result)
     {
         test = extent.createTest(result.getName());

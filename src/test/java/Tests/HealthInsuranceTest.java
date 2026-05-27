@@ -14,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import ObjectImplementation.ObjectReader;
@@ -27,31 +28,22 @@ public class HealthInsuranceTest {
 	HealthInsurancePage healthPage;
 	List<String> extractedList;
 
-	//@BeforeTest
+	@BeforeTest
 	public void Setup() throws IOException {
-		//System.out.println("Enter the browser you need to use from the following options: \n1. chrome \n2. edge \n3. firefox");
-		//Scanner sc =new Scanner(System.in);
-		//int browserNumber=sc.nextInt();
+
 		
-		//bc= new BaseClass();
+		driver = new ChromeDriver();
 		or= new ObjectReader();
-		
-		//driver=bc.getBrowser(browserNumber);
-		
+		//BaseClass.driver = driver; 
 		driver.get(or.getBaseUrl());
-		//sc.close();
-		healthPage = new HealthInsurancePage(driver);
+		driver.manage().window().maximize();
 		
 	}
+	
 	
 	//Navigate to health insurance page
 	@Test(priority=1)
     public void navigateToHeathInsurancePage() throws IOException, InterruptedException {
-
-		driver = new ChromeDriver();
-		or= new ObjectReader();
-		BaseClass.driver = driver; 
-		driver.get(or.getBaseUrl());
 
 		healthPage = new HealthInsurancePage(driver);
 		boolean isNavigated = healthPage.navigateToHealthInsurance(or.getHealthInsuranceLink());

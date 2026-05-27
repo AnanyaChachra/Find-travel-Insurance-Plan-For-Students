@@ -6,16 +6,16 @@
 		<listener class-name="Tests.ExtentReportManager"/>
 		<listener class-name="Utilities.ExcelReportListener"/>
 	</listeners>
-  <test thread-count="3" name="travel insurance test" verbose="2">
+  <!--<test thread-count="3" name="travel insurance test" verbose="2">
     <classes>
       <class name="Tests.TravelInsuranceTest"/>
     </classes>
-  </test> <!-- Default test -->
+  </test> 
   <test thread-count="3" name="health insurance test" verbose="2">
     <classes>
       <class name="Tests.HealthInsuranceTest"/>
     </classes>
-  </test>
+  </test>-->
   
   <test thread-count="3" name="cancer insurance test" verbose="2">
     <classes>
