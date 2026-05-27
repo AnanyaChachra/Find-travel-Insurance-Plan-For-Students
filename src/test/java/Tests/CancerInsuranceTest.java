@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 
 import ObjectImplementation.ObjectReader;
 import Pages.CancerInsurancePage;
+import Utilities.WaitClass;
 import base.BaseClass;
 
 public class CancerInsuranceTest {
@@ -24,16 +25,14 @@ public class CancerInsuranceTest {
     ObjectReader or;
     CancerInsurancePage can;
     WebDriverWait wait;
+    WaitClass w;
 
     @BeforeTest
     public void Setup() throws IOException {
 
-       // System.out.println("Enter the browser you need to use from the following options: \n1. chrome \n2. edge \n3. firefox");
-        //Scanner sc = new Scanner(System.in);
-        //int browserNumber = sc.nextInt();
-
         bc = new BaseClass();
         or = new ObjectReader();
+        w = new WaitClass();
 
         driver = bc.getBrowser(1);
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -45,7 +44,6 @@ public class CancerInsuranceTest {
 
 
         driver.get(or.getBaseUrl());
-        //sc.close();
     }
 
     @Test(priority = 0)
@@ -53,7 +51,7 @@ public class CancerInsuranceTest {
     public void getAllProductsTest() throws InterruptedException {
 
         can.getAllProducts();
-        Thread.sleep(3000);
+        w.waitingForThePageToLoad();
 
         boolean isVisible = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[normalize-space()='More Products']")))
@@ -68,7 +66,7 @@ public class CancerInsuranceTest {
     public void getCancerInsuranceTest() throws InterruptedException {
 
         can.getCancerInsurance();
-        Thread.sleep(3000);
+        w.waitingForTheElementToLoad();
 
         // Assertion: Verify URL contains "cancer"
         Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains("cancer"),
@@ -80,7 +78,7 @@ public class CancerInsuranceTest {
     public void setGenderTest() throws InterruptedException {
 
         boolean gender = can.setGender();
-        Thread.sleep(3000);
+        w.waitingForTheElementToLoad();
 
         // Assertion: Verify gender is selected
         Assert.assertTrue(gender, "Gender selection failed");
@@ -91,7 +89,7 @@ public class CancerInsuranceTest {
     public void setPersonTest() throws InterruptedException {
 
         boolean person = can.setPerson();
-        Thread.sleep(3000);
+        w.waitingForTheElementToLoad();
 
         // Assertion: Verify person selection
         Assert.assertTrue(person, "Gender selection failed");
@@ -102,7 +100,7 @@ public class CancerInsuranceTest {
     public void clickContinueTest() throws InterruptedException {
 
         boolean continueFirst = can.clickContinue();
-        Thread.sleep(3000);
+        w.waitingForTheElementToLoad();
 
         // Assertion: Verify navigation to next step
         Assert.assertTrue(continueFirst, "Gender selection failed");
@@ -117,7 +115,7 @@ public class CancerInsuranceTest {
         // Assertion: Verify selected age
         Assert.assertEquals(age, "22 Years");
 
-        Thread.sleep(3000);
+        w.waitingForTheElementToLoad();
     }
 
     @Test(dependsOnMethods = "setAgeTest")
@@ -125,7 +123,7 @@ public class CancerInsuranceTest {
     public void clickContinueAfterAgeTest() throws InterruptedException {
 
         boolean continueSecond = can.clickContinueAfterAge();
-        Thread.sleep(3000);
+        w.waitingForTheElementToLoad();
 
         // Assertion: Verify navigation after age
         Assert.assertTrue(continueSecond, "Age selection failed");
@@ -140,7 +138,8 @@ public class CancerInsuranceTest {
         // Assertion: Verify city selection
         Assert.assertTrue(city, "city selection failed");
 
-        Thread.sleep(3000);
+
+        w.waitingForTheElementToLoad();
     }
 
     @Test(dependsOnMethods = "setCityTest")
@@ -155,7 +154,7 @@ public class CancerInsuranceTest {
         // Assertion: Verify phone number
         Assert.assertEquals(users[1], "98768560");
 
-        Thread.sleep(3000);
+        w.waitingForTheElementToLoad();
     }
 
     @Test(dependsOnMethods = "setUsernameAndPasswordTest")
@@ -163,7 +162,7 @@ public class CancerInsuranceTest {
     public void clickContinueFinalTest() throws InterruptedException {
 
         can.clickContinueFinal();
-        Thread.sleep(3000);
+        w.waitingForTheElementToLoad();
     }
 
     @Test(dependsOnMethods = "setUsernameAndPasswordTest")
@@ -171,7 +170,7 @@ public class CancerInsuranceTest {
     public void takeScreenshotMessageTest() throws InterruptedException, IOException {
 
         can.takeScreenshotMessage();
-        Thread.sleep(3000);
+        w.waitingForThePageToLoad();
 
         String path = System.getProperty("user.dir")
                 + "/screenshots/InvalidNumberMessage.png";
